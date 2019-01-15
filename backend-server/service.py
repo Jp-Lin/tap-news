@@ -13,7 +13,6 @@ class RequestHandler(pyjsonrpc.HttpRequestHandler):
         return num1 + num2
 
 
-
 # Threading HTTP Server
 HTTP_SERVER = pyjsonrpc.ThreadingHttpServer(
     server_address=(SERVER_HOST, SERVER_PORT),

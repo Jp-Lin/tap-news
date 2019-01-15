@@ -12,6 +12,7 @@ def test_basic():
     db_name.testCollection.drop()
     assert db_name.testCollection.count() == 0
     print('test_basic passed.')
+    # client.drop_db('test')
 
 if __name__ == "__main__":
     test_basic()
