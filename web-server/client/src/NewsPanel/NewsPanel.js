@@ -3,6 +3,8 @@ import _ from 'lodash';
 import './NewsPanel.css';
 import NewsCard from '../NewsCard/NewsCard';
 
+// const SERVER_URL = 'http://192.168.86.225:3000/';
+const SERVER_URL = 'http://localhost:3000/';
 class NewsPanel extends React.Component {
     constructor() {
         super();
@@ -16,10 +18,8 @@ class NewsPanel extends React.Component {
         window.addEventListener('scroll', this.handleScroll);
     }
 
-
-
     loadMoreNews() {
-        const request = new Request('http://localhost:3000/news', {
+        const request = new Request(SERVER_URL + 'news', {
             method: 'GET',
             cache: 'no-cache'
         });

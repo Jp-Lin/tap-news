@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Auth from '../Auth/Auth';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import LoginForm from './LoginForm';
 import './LoginPage.css';
 

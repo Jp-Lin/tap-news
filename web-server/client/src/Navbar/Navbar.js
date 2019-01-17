@@ -9,7 +9,7 @@ class Base extends Component {
             <div>
                 <nav className="nav-bar indigo lighten-1">
                     <div className="nav-wrapper">
-                        <a href="/" className="brand-logo">&nbsp;Tap News</a>
+                        <Link to="/" className="brand-logo">&nbsp;Tap News</Link>
                         <ul id="nav-mobile" className="right">
                             {Auth.isUserAuthenticated() ?
                                 (<div>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 import SignupForm from './SignupForm';
 import './SignupPage.css';
@@ -37,7 +37,7 @@ class SignupPage extends Component {
     // Post signup data.
     fetch('http://localhost:3000/auth/signup', {
       method: 'POST',
-      cache: false,
+      cache: 'no-cache',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
@@ -56,7 +56,7 @@ class SignupPage extends Component {
         this.context.router.replace('/login');
       } else {
         response.json().then(function(json) {
-          console.log(json);
+          // console.log(json);
           const errors = json.errors ? json.errors : {};
           errors.summary = json.message;
           this.setState({errors});

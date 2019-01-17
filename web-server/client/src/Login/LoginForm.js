@@ -31,7 +31,7 @@ const LoginForm = ({
             <input type="submit" className="waves-effect waves-light btn indigo lighten-1" value='Log in'/>
           </div>
           <div className="row">
-            <p className="right-align"> New to Tap News?  <Link to="/signup">Sign Up</Link></p>
+            <p className="right-align"> New to Tap News?&nbsp;<Link to="/signup">Sign Up</Link></p>
           </div>
         </form>
       </div>
