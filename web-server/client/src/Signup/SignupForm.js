@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-const SignUpForm = ({
+const SignupForm = ({
     onSubmit,
     onChange,
     errors,
@@ -44,11 +44,11 @@ const SignUpForm = ({
     </div>
   );
   
-  SignUpForm.propTypes = {
+  SignupForm.propTypes = {
     onSubmit: PropTypes.func.isRequired,
     onChange: PropTypes.func.isRequired,
     errors: PropTypes.object.isRequired,
     user: PropTypes.object.isRequired
   };
   
-  export default SignUpForm;
+  export default SignupForm;

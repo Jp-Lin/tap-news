@@ -20,14 +20,14 @@ class LoginPage extends Component {
         this.changeUser = this.changeUser.bind(this);
     }
 
-    ProcessForm(event) {
+    processForm(event) {
         event.preventDefault();
         const email = this.state.user.email;
         const password = this.state.user.password;
 
         fetch('http://localhost:3000/auth/login', {
             method: 'POST',
-            cache: false,
+            cache: 'no-cache',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
@@ -42,8 +42,9 @@ class LoginPage extends Component {
                     errors: {}
                 });
                 response.json().then(response => {
-                    console.log(response);
+                    // console.log(response);
                     Auth.authenticateUser(response.token, email);
+                    console.log(this.context);
                     this.context.router.replace('/');
                 })
             } else {
@@ -77,8 +78,8 @@ class LoginPage extends Component {
     }
 }
 
-LoginPage.contextTypes = {
-    router: PropTypes.object.isRequired
-};
+// LoginPage.contextTypes = {
+//     router: PropTypes.object.isRequired
+// };
 
 export default LoginPage;
