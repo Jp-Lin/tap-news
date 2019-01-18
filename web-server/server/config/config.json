@@ -1,0 +1,4 @@
+{
+    "mongoDbUri": "mongodb://admin:admin123@ds119250.mlab.com:19250/tap_news_user",
+    "jwtSecret": "a secret phrase"
+}
