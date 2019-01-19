@@ -29,7 +29,6 @@ class SignupPage extends Component {
     const email = this.state.user.email;
     const password = this.state.user.password;
     const confirm_password = this.state.user.confirm_password;
-
     if (password !== confirm_password) {
       return;
     }
@@ -51,9 +50,8 @@ class SignupPage extends Component {
         this.setState({
           errors: {}
         });
-
         // change the current URL to /login
-        this.context.router.replace('/login');
+        this.props.history.replace('/login');
       } else {
         response.json().then(function(json) {
           // console.log(json);

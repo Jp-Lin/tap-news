@@ -24,7 +24,6 @@ class LoginPage extends Component {
         event.preventDefault();
         const email = this.state.user.email;
         const password = this.state.user.password;
-
         fetch('http://localhost:3000/auth/login', {
             method: 'POST',
             cache: 'no-cache',
@@ -44,8 +43,7 @@ class LoginPage extends Component {
                 response.json().then(response => {
                     // console.log(response);
                     Auth.authenticateUser(response.token, email);
-                    console.log(this.context);
-                    this.context.router.replace('/');
+                    this.props.history.replace('/');
                 })
             } else {
                 console.log('Login failed');

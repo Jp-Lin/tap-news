@@ -17,7 +17,6 @@ module.exports = new PassportLocalStrategy({
     if (err) {
       return done(err);
     }
-
     return done(null);
   });
 });

@@ -14,7 +14,7 @@ module.exports = new PassportLocalStrategy({
         password: password
     };
 
-    return User.findOne({ email: UserData.email }, (err, user) => {
+    return User.findOne({ email: userData.email }, (err, user) => {
         if (err) { return done(err); }
 
         if (!user) {
@@ -26,16 +26,18 @@ module.exports = new PassportLocalStrategy({
 
         return user.comparePassword(userData.password, (passwordErr, isMatch) => {
             if (passwordErr) { return done(passwordErr); }
+
             if (!isMatch) {
                 const error = new Error("Incorrect email or password.");
                 error.name = "IncorrectCredentialsError";
                 return done(error);
             }
+
             const payload = {
                 sub: user._id
             }
-            const token = jwt.sign(payload, config.jwtSecret);
 
+            const token = jwt.sign(payload, config.jwtSecret);
             const data = {
                 name: user.email
             };

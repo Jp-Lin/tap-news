@@ -1,25 +1,33 @@
-var createError   = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cors = require('cors');
-var passport = require('passport');
-var indexRouter = require('./routes/index');
-var newsRouter = require('./routes/news');
+const createError   = require('http-errors');
+const express = require('express');
+const app = express();
+const bodyParser = require('body-parser');
+const path = require('path');
+const cors = require('cors');
+const passport = require('passport');
 
+const config = require('./config/config.json');
+require('./models/main').connect(config.mongoDbUri);
+const indexRouter = require('./routes/index');
+const newsRouter = require('./routes/news');
+const authRouter = require('./routes/auth');
 const localSignupStrategy = require('./passport/signup_passport');
-const loginStrategy = require('./passport/login_passport');
-var app = express();
+const localLoginStrategy = require('./passport/login_passport');
 
 app.use(express.static(path.join(__dirname, '../client/build')));
 
 app.use(cors());
+app.use(bodyParser.json());
 
 app.use(passport.initialize());
 passport.use('local-signup', localSignupStrategy);
 passport.use('local-login', localLoginStrategy);
 
 app.use('/', indexRouter);
+const authCheckMiddleware = require('./middleware/auth_checker');
+app.use('/news', authCheckMiddleware);
 app.use('/news', newsRouter);
+app.use('/auth', authRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

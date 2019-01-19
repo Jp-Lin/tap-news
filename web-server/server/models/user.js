@@ -9,11 +9,11 @@ const UserSchema = new mongoose.Schema({
     password: String
 });
 
-UserSchema.methods.comparePassword = (password, callback) => {
+UserSchema.methods.comparePassword = function comparePassword (password, callback) {
     bcrypt.compare(password, this.password, callback);
 }
 
-UserSchema.pre('save', next => {
+UserSchema.pre('save', function saveHook(next) {
     const user = this;
 
     if (!user.isModified('password')) return next();
