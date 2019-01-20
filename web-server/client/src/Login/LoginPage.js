@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import Auth from '../Auth/Auth';
-// import PropTypes from 'prop-types';
 import LoginForm from './LoginForm';
 import './LoginPage.css';
 
 
 class LoginPage extends Component {
-    constructor(props, context) {
-        super(props, context);
+    constructor(props) {
+        super(props);
         this.state = {
             errors: {},
             user: {
@@ -75,9 +74,5 @@ class LoginPage extends Component {
         )
     }
 }
-
-// LoginPage.contextTypes = {
-//     router: PropTypes.object.isRequired
-// };
 
 export default LoginPage;
