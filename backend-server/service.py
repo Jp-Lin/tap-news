@@ -1,8 +1,14 @@
+import sys
+import os
+import json
 import pyjsonrpc
+from bson.json_util import dumps
+
+sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'common'))
+import mongodb_client
 
 SERVER_HOST = 'localhost'
 SERVER_PORT = 4040
-
 
 class RequestHandler(pyjsonrpc.HttpRequestHandler):
     """ RPC request handler """

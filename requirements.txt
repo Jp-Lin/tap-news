@@ -1,0 +1,9 @@
+python-dateutil
+python-jsonrpc
+pymongo
+pika
+requests
+redis
+lxml
+git+https://github.com/codelucas/newspaper.git@python-2-head # newspaper
+sklearn
