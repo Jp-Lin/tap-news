@@ -76,7 +76,7 @@ router.post('/login', (req, res, next) => {
 });
 
 function validateSignupForm(payload) {
-    console.log(payload);
+    //console.log(payload);
     const errors = {};
     let isFormValid = true;
     let message = '';

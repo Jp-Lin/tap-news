@@ -17,10 +17,15 @@
     text-align: left;
   }
   
-  .news-description p {
+  .news-description {
     font-size: 18px;
   }
   
+  .news-time {
+    color: #808080;
+    font-size: 15px;
+  }
+
   .news-chip {
     font-size: 18px;
   }

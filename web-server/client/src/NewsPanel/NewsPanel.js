@@ -9,7 +9,7 @@ const SERVER_URL = 'http://localhost:3000/';
 class NewsPanel extends React.Component {
     constructor() {
         super();
-        this.state = {news: null};
+        this.state = { news: null, pageNum: 1, loadedAll: false };
         this.handleScroll = this.handleScroll.bind(this);
     }
 
@@ -19,33 +19,46 @@ class NewsPanel extends React.Component {
         window.addEventListener('scroll', this.handleScroll);
     }
 
-    loadMoreNews() { 
-        const request = new Request(SERVER_URL + 'news', {
-            method: 'GET',
-            headers: {
-                'Authorization': 'bearer ' + Auth.getToken()
-            },
-            cache: 'no-cache'
-        });
+    loadMoreNews() {
+        if (this.state.loadedAll === true) {
+            return;
+        }
+        const url = SERVER_URL + 'news/userId/' + Auth.getEmail()
+        + '/pageNum/' + this.state.pageNum;
+
+        const request = new Request( encodeURI(url), {
+                method: 'GET',
+                headers: {
+                    'Authorization': 'bearer ' + Auth.getToken()
+                },
+                cache: 'no-cache'
+            });
 
         fetch(request).then(res => res.json())
-        .then(news => this.setState({
-            news: this.state.news? this.state.news.concat(news) : news
-        }));
+            .then(news => {
+                if (!news || news.length === 0) {
+                    this.setState({ loadAll: true });
+                }
+                this.setState({
+                    news: this.state.news ? this.state.news.concat(news) : news,
+                    pageNum: this.state.pageNum + 1
+                });
+                console.log(this.state.pageNum);
+            });
     }
 
     handleScroll() {
         // different browser
         const scrollY = window.scrollY ||
-                    window.pageYOffset ||
-                    document.documentElement.scrollTop;
+            window.pageYOffset ||
+            document.documentElement.scrollTop;
         if ((window.innerHeight + scrollY) >= (document.body.offsetHeight - 50)) {
-        console.log('Loading more news');
-        this.loadMoreNews();
+            console.log('Loading more news');
+            this.loadMoreNews();
         }
     }
     renderNews() {
-        const news_list = this.state.news.map( news => {
+        const news_list = this.state.news.map(news => {
             return (
                 <div className='list-group-item' key={news.digest}>
                     <NewsCard news={news} />
@@ -74,7 +87,7 @@ class NewsPanel extends React.Component {
                     <div id="msg-app-loading">
                         loading
                     </div>
-                </div> 
+                </div>
             );
         }
     }
