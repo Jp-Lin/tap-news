@@ -24,7 +24,14 @@ function getNewsSummaryForUser(user_id, page_num, callback) {
     });
   }
 
+function logNewsClickForUser(user_id, news_id) {
+    client.request('logNewsClickForUser'), [user_id, news_id], function(err, error, response){
+        if (err) throw err;
+    }
+}
+
 module.exports = {
     add,
-    getNewsSummaryForUser
+    getNewsSummaryForUser,
+    logNewsClickForUser
 }

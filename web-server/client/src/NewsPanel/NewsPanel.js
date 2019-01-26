@@ -4,8 +4,8 @@ import './NewsPanel.css';
 import NewsCard from '../NewsCard/NewsCard';
 import Auth from '../Auth/Auth';
 
-// const SERVER_URL = 'http://192.168.86.225:3000/';
-const SERVER_URL = 'http://localhost:3000/';
+const SERVER_URL = 'http://192.168.86.225:3000/';
+// const SERVER_URL = 'http://localhost:3000/';
 class NewsPanel extends React.Component {
     constructor() {
         super();
@@ -53,7 +53,7 @@ class NewsPanel extends React.Component {
             window.pageYOffset ||
             document.documentElement.scrollTop;
         if ((window.innerHeight + scrollY) >= (document.body.offsetHeight - 50)) {
-            console.log('Loading more news');
+            // console.log('Loading more news');
             this.loadMoreNews();
         }
     }

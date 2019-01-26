@@ -103,7 +103,7 @@ function validateSignupForm(payload) {
 }
 
 function validateLoginForm(payload) {
-    console.log(payload);
+    // console.log(payload);
     const errors = {};
     let isFormValid = true;
     let message = '';

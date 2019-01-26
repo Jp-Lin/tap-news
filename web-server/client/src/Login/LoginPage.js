@@ -3,6 +3,8 @@ import Auth from '../Auth/Auth';
 import LoginForm from './LoginForm';
 import './LoginPage.css';
 
+const SERVER_URL = 'http://192.168.86.225:3000/';
+// const SERVER_URL = 'http://localhost:3000/';
 
 class LoginPage extends Component {
     constructor(props) {
@@ -23,7 +25,7 @@ class LoginPage extends Component {
         event.preventDefault();
         const email = this.state.user.email;
         const password = this.state.user.password;
-        fetch('http://localhost:3000/auth/login', {
+        fetch(SERVER_URL + 'auth/login', {
             method: 'POST',
             cache: 'no-cache',
             headers: {

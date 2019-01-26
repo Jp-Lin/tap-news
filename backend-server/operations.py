@@ -60,7 +60,16 @@ def getNewsSummaryForUser(user_id, page_num):
     
     for news in sliced_news:
         news['publishedAt'] = news['publishedAt'].strftime("%H:%M, %m-%d-%Y")
-        
 
     # print(sliced_news)
     return json.loads(dumps(sliced_news))
+
+def logNewsClickForUser(user_id, news_id):
+    
+    message = {'userId': user_id, 'newsId': news_id, 'timestamp': datetime.utcnow()}
+
+    db[CLICK_LOGS_TABLE_NAME].insert(message)
+
+    message = {'userId': user_id, 'newsId': news_id, 'timestamp': str(datetime.utcnow())}
+    cloudAMQP_client.send_message(message);
+    
