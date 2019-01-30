@@ -71,5 +71,5 @@ def logNewsClickForUser(user_id, news_id):
     db[CLICK_LOGS_TABLE_NAME].insert(message)
 
     message = {'userId': user_id, 'newsId': news_id, 'timestamp': str(datetime.utcnow())}
-    cloudAMQP_client.send_message(message);
+    cloudAMQP_client.send_message(message)
     
